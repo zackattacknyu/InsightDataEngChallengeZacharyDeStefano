@@ -6,6 +6,7 @@ package zrdnetworkdata;
 
 import java.util.HashSet;
 import java.util.TreeMap;
+import java.util.TreeSet;
 
 /**
  *
@@ -21,10 +22,9 @@ public class User {
     private double sumXi;
     private double sumXiSquared;
     
-    private TreeMap<Long,Object> pastTransactionsForUser;
-    private TreeMap<Long,Object> pastTransactionsInNetwork;
+    private TreeSet<Transaction> pastTransactionsInNetwork;
     
-    private HashSet<User> neighbors;
+    public HashSet<User> neighbors;
     private HashSet<User> allUsersInNetwork;
     
     public void recalculateNetwork(){
