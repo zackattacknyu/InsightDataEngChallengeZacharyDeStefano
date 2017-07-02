@@ -10,4 +10,9 @@ package zrdchallengemain;
  */
 public class JsonFileTest {
     
+    public static void runTests(){
+        
+        
+    }
+    
 }
