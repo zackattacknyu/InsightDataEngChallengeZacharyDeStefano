@@ -19,7 +19,6 @@ public class SocialNetworkHelper {
          */
         user1.removeNeighbor(user2);
         user2.removeNeighbor(user1);
-        SocialNetworkHelper.recalculateSocialNetwork( user1,  user2);
     }
     
     public static void beginFriendship(User user1, User user2){
@@ -28,17 +27,6 @@ public class SocialNetworkHelper {
          */
         user1.addNeighbor(user2);
         user2.addNeighbor(user1);
-        SocialNetworkHelper.recalculateSocialNetwork( user1,  user2);
-    }
-
-    public static void recalculateSocialNetwork(User user1, User user2) {
-        HashSet<User> usersToUpdate = obtainUsersToUpdate(user1, user2);
-        recalculateSocialNetwork(usersToUpdate);
-    }
-    public static void recalculateSocialNetwork(HashSet<User> usersToUpdate){
-        for (User user : usersToUpdate) {
-            user.setSocialNetwork(obtainSocialNetworkForUser(user));
-        }
     }
 
     /**

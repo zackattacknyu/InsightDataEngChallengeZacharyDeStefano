@@ -25,12 +25,11 @@ public class User {
     private TreeSet<Transaction> pastTransactionsInNetwork;
     
     private HashSet<User> neighbors;
-    private HashSet<User> socialNetwork;
+    //private HashSet<User> socialNetwork;
     
     public User(int id){
         idNumber=id;
         neighbors = new HashSet<>();
-        socialNetwork = new HashSet<>();
     }
     
     public void removeNeighbor(User neighbor){
@@ -41,20 +40,16 @@ public class User {
         neighbors.add(neighbor);
     }
     
-    public void setSocialNetwork(HashSet<User> network){
-        socialNetwork=network;
-    }
 
     public HashSet<User> getNeighbors() {
         return neighbors;
     }
-
-    public HashSet<User> getSocialNetwork() {
-        return socialNetwork;
+    
+    public HashSet<User> getSocialNetwork(){
+        return SocialNetworkHelper.obtainSocialNetworkForUser(this);
     }
-    
-    
-    
+
+
     public void recalculateNetwork(){
         /*
          * Goes through friends of friends ...

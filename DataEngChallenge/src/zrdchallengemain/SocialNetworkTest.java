@@ -5,6 +5,7 @@
 package zrdchallengemain;
 
 import java.util.Calendar;
+import java.util.HashSet;
 import zrdnetworkdata.SocialNetworkHelper;
 import zrdnetworkdata.User;
 import zrdnetworkdata.UserTransactionSet;
@@ -79,10 +80,13 @@ public class SocialNetworkTest {
          *      of the network. Test performance. 
          */
         long startingTime = Calendar.getInstance().getTimeInMillis();
-        constructLargeRandomNetwork();
+        UserTransactionSet randNet = constructLargeRandomNetwork();
         long endingTime = Calendar.getInstance().getTimeInMillis();
-        double timeElapsed = (endingTime-startingTime)/1000.0;
-        System.out.println("Time to do Test 5: " + timeElapsed + " seconds");
+        SocialNetworkHelper.numDegreesSocialNetwork=1;
+        displayRandomPartsOfNetwork(randNet,20);
+        
+        double constructionTimeElapsed = (endingTime-startingTime)/1000.0;
+        System.out.println("Time to construct network: " + constructionTimeElapsed + " seconds");
         
     }
     
@@ -94,7 +98,6 @@ public class SocialNetworkTest {
         for(int numConn = minNum; numConn <= maxNum; numConn++){
             System.out.println("Network with Number Connections set to: " + numConn);
             SocialNetworkHelper.numDegreesSocialNetwork=numConn;
-            theSet.recalculateNetwork();
             displayNetwork(theSet);
             System.out.println();
         }
@@ -103,12 +106,12 @@ public class SocialNetworkTest {
     public static UserTransactionSet constructLargeRandomNetwork(){
         /*
          * There were 100,000 "befriend" actions in the large json file
-         *      so I will use 100,000 users an upper bound on the number
+         *      so I will use 1,000,000 users an upper bound on the number
          *      to handle at once. 
-         * And I will make 500,000 random "befriend" actions
+         * And I will make 5,000,000 random "befriend" or "unfriend" actions
          */
-        int numUsers = (int)Math.pow(10, 5);
-        int numFriendActions = (int)(2*Math.pow(10,5));
+        int numUsers = (int)Math.pow(10, 6);
+        int numFriendActions = (int)(5*Math.pow(10,6));
         
         UserTransactionSet theSet = new UserTransactionSet();
         for(int kk=0; kk < numUsers; kk++){
@@ -149,9 +152,7 @@ public class SocialNetworkTest {
         theSet.addFriendship(4, 9);
         theSet.addFriendship(10, 11);
         theSet.addFriendship(11, 12);
-        
-        
-        theSet.recalculateNetwork();
+
         return theSet;
     }
     
@@ -167,8 +168,7 @@ public class SocialNetworkTest {
         theSet.addFriendship(4, 6);
         theSet.addFriendship(4, 5);
         theSet.addFriendship(5, 6);
-        
-        theSet.recalculateNetwork();
+
         return theSet;
     }
     
@@ -176,12 +176,34 @@ public class SocialNetworkTest {
         
         
         for(User user:theSet.getAllUsersSet()){
-            System.out.print("Network of " + user.hashCode() + ":");
-            for(User inNetwork: user.getSocialNetwork()){
-                System.out.print(inNetwork.hashCode() + " ");
-            }
-            System.out.println();
+            displayUser(user);
         }
+    }
+    
+    public static void displayRandomPartsOfNetwork(UserTransactionSet theSet,int numRandom){
+        
+        HashSet<Integer> displayed = new HashSet<Integer>();
+        int currentNumDisplayed = 0;
+        int currentIndex;
+        
+        while(currentNumDisplayed < numRandom){
+            currentIndex = (int)Math.floor(theSet.getNumberUsers()*Math.random());
+            if(!displayed.contains(currentIndex)){
+                displayed.add(currentIndex);
+                currentNumDisplayed++;
+                displayUser(theSet.getUser(currentIndex));
+            }
+            
+        }
+        
+    }
+    
+    public static void displayUser(User user){
+        System.out.print("Network of " + user.hashCode() + ":");
+        for(User inNetwork: user.getSocialNetwork()){
+            System.out.print(inNetwork.hashCode() + " ");
+        }
+        System.out.println();
     }
     
 

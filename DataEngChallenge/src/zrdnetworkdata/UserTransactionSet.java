@@ -35,16 +35,19 @@ public class UserTransactionSet {
         allUsers.put(newUserId,newUser);
         allUsersSet.add(newUser);
     }
+    
+    public User getUser(int id){
+        return allUsers.get(id);
+    }
+    
+    public int getNumberUsers(){
+        return allUsers.size();
+    }
 
     public HashSet<User> getAllUsersSet() {
         return allUsersSet;
     }
-    
-    
-    
-    public void recalculateNetwork(){
-        SocialNetworkHelper.recalculateSocialNetwork(allUsersSet);
-    }
+////
     
     public void addFriendship(int user1id, int user2id){
         SocialNetworkHelper.beginFriendship(allUsers.get(user1id), allUsers.get(user2id));
