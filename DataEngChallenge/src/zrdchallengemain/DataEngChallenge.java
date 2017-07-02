@@ -16,6 +16,7 @@ public class DataEngChallenge {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        readJsonFile.exampleRun();
+        //readJsonFile.exampleRun();
+        SocialNetworkTest.runTest1();
     }
 }
