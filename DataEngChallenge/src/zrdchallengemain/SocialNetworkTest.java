@@ -28,18 +28,28 @@ public class SocialNetworkTest {
      *      for each user and make sure the output
      *      is as expected
      */
-    public static void runTest1(){
+    public static void runTests(){
         
-        for(int numConn = 1; numConn <= 4; numConn++){
-            System.out.println("Network with Number Connections set to: " + numConn);
-            SocialNetworkHelper.numDegreesSocialNetwork=numConn;
-            constructAndTestNetwork1();
-            System.out.println();
-        }
+        /*
+         * Test1: Original Network above
+         */
+        UserTransactionSet test1set = constructNetwork1();
+        displayNetworkWithDifferentNumConnections(test1set,1,4);
+        
+        
         
     }
     
-    public static void constructAndTestNetwork1(){
+    public static void displayNetworkWithDifferentNumConnections(UserTransactionSet theSet,int minNum, int maxNum){
+        for(int numConn = 1; numConn <= 4; numConn++){
+            System.out.println("Network with Number Connections set to: " + numConn);
+            SocialNetworkHelper.numDegreesSocialNetwork=numConn;
+            displayNetwork(theSet);
+            System.out.println();
+        }
+    }
+    
+    public static UserTransactionSet constructNetwork1(){
         UserTransactionSet theSet = new UserTransactionSet();
         for(int kk=1;kk<=6;kk++){
             theSet.addUser(kk);
@@ -53,6 +63,11 @@ public class SocialNetworkTest {
         theSet.addFriendship(5, 6);
         
         theSet.recalculateNetwork();
+        return theSet;
+    }
+    
+    public static void displayNetwork(UserTransactionSet theSet){
+        
         
         for(User user:theSet.getAllUsersSet()){
             System.out.print("Network of " + user.hashCode() + ":");
