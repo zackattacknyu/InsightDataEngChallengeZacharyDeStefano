@@ -8,13 +8,14 @@ package zrdchallengemain;
  *
  * @author Zach
  */
-public class DataEngChallenge {
+public class Main {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         //readJsonFile.exampleRun();
-        SocialNetworkTest.runTests();
+        //SocialNetworkTest.runTests();
+        TimestampTests.runTests();
     }
 }
