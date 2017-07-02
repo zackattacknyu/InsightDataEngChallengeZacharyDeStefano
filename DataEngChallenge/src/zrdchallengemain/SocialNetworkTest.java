@@ -78,7 +78,14 @@ public class SocialNetworkTest {
          * Test 5: Test Scalability. Randomly generate millions of users
          *      and millions of conections. Print out random subset
          *      of the network. Test performance. 
+         * 
+         * Constructs it in 5 seconds. 
+         * 
+         * NOTE: For each user, can only store its neighbors. 
+         *      Storing the whole social network for each user
+         *          is not scalable at all as my tests verified.
          */
+        System.out.println("------Test 4: Random Network------------");
         long startingTime = Calendar.getInstance().getTimeInMillis();
         UserTransactionSet randNet = constructLargeRandomNetwork();
         long endingTime = Calendar.getInstance().getTimeInMillis();
@@ -86,7 +93,7 @@ public class SocialNetworkTest {
         displayRandomPartsOfNetwork(randNet,20);
         
         double constructionTimeElapsed = (endingTime-startingTime)/1000.0;
-        System.out.println("Time to construct network: " + constructionTimeElapsed + " seconds");
+        System.out.println("TO CHECK: Time to construct network: " + constructionTimeElapsed + " seconds");
         
     }
     
