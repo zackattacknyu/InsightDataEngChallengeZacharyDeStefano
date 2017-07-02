@@ -52,9 +52,10 @@ public class TimestampTests {
         System.out.println("Year:" + calendar.get(Calendar.YEAR) + 
                 " Month:" + calendar.get(Calendar.MONTH) + 
                 " Day:" + calendar.get(Calendar.DAY_OF_MONTH) + 
-                " Hour: " + calendar.get(Calendar.HOUR_OF_DAY) + 
-                " Minute: " + calendar.get(Calendar.MINUTE) + 
-                " Second: " + calendar.get(Calendar.SECOND) );
+                " Hour:" + calendar.get(Calendar.HOUR_OF_DAY) + 
+                " Minute:" + calendar.get(Calendar.MINUTE) + 
+                " Second:" + calendar.get(Calendar.SECOND) +
+                "   Millis since 1970:" + calendar.getTimeInMillis());
         
         
     }
