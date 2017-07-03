@@ -4,8 +4,6 @@
  */
 package zrdchallengemain;
 
-import zrdreadjsondata.readJsonFile;
-
 /**
  *
  * @author Zach
@@ -18,7 +16,7 @@ public class Main {
     public static void main(String[] args) {
         //readJsonFile.exampleRun();
         //SocialNetworkTest.runTests();
-        //TimestampTests.runTests();
+        TimestampTests.runTests();
         JsonFileTest.runTests();
     }
 }

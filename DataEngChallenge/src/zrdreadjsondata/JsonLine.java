@@ -142,7 +142,7 @@ public class JsonLine {
                 break;
             case 1:
                 System.out.println("PARAMETERS SPECIFIED:: D:" + Dvalue + 
-                        "  " + Tvalue);
+                        "  T:" + Tvalue);
                 break;
             case 2:
                 System.out.println("PURCHASE EVENT: User " + userX + 
