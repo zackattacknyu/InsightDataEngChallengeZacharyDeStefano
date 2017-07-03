@@ -17,8 +17,7 @@ public class User {
     private double stdOfTnetworkTransactions;
     
     //used in the mean, std calculation
-    private double sumXi;
-    private double sumXiSquared;
+    private double sumXi,sumXiSquared,mean,std;
     
     private TransactionSet pastTransactionsInNetwork;
     
@@ -54,29 +53,12 @@ public class User {
     }
     
     
-
-
-    public void recalculateNetwork(){
-        /*
-         * Goes through friends of friends ...
-         * and calculates the social network
-         */
-    }
-    
-    
     public void recalculateAll(){
-        /*
-         * When adding or deleting a friendship,
-         * This will go through the global list of transactions
-         *      and recalculate the T most recent that
-         *      are in the user's social network
-         * 
-         * It will then find the mean and STD of those transactions
-         */
-        
+        mean = TransactionHelper.getMean(pastTransactionsInNetwork);
+        std = TransactionHelper.getStd(pastTransactionsInNetwork);        
     }
     
-    public void recalculateMeanAndStd(){
+    private void recalculateMeanAndStd(){
         
         /*
          * When one transaction is added to a user's list, 

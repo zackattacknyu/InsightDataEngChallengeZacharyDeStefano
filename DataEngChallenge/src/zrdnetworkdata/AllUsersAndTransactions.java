@@ -69,6 +69,12 @@ public class AllUsersAndTransactions {
         }
     }
     
+    public void calculateMeanStdForAllUsers(){
+        for(User user: allUsersSet){
+            user.recalculateAll();
+        }
+    }
+    
     public void addToTransSet(User userX,long transTime,double amount){
         transactionSet.addToSet(userX, transTime, amount);
     }

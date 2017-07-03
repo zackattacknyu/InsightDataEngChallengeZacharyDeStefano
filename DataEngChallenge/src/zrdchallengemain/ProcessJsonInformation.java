@@ -46,12 +46,17 @@ public class ProcessJsonInformation {
                            
             }
         }
-        
+        allData.calculateTransForAllUsers();
         long endT = Calendar.getInstance().getTimeInMillis();
         
         double elapsed = (endT-startT)/1000.0;
         System.out.println("PROCESSING LARGE LOG FILE TOOK " + elapsed + " SECONDS");
         
+        startT=Calendar.getInstance().getTimeInMillis();
+        allData.calculateMeanStdForAllUsers();
+        endT=Calendar.getInstance().getTimeInMillis();
+        elapsed = (endT-startT)/1000.0;
+        System.out.println("CALCULATING MEAN AND STD FOR ALL USERS TOOK " + elapsed + " SECONDS");
     }
     
 }

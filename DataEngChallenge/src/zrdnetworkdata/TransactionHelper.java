@@ -36,4 +36,27 @@ public class TransactionHelper {
         return transForUsers;
     }
     
+    public static double getMean(TransactionSet transactions){
+        double sum = 0;
+        for(Transaction transaction: transactions.getTransSet()){
+            sum += transaction.getAmount();
+        }
+        double denom = transactions.getTransSet().size();
+        return sum/denom;
+    }
+    
+    public static double getStd(TransactionSet transactions){
+        double mean = getMean(transactions);
+        double sumDiffSq = 0;
+        double tAmount,diff,diffSq;
+        for(Transaction transaction: transactions.getTransSet()){
+            tAmount = transaction.getAmount();
+            diff=tAmount-mean;
+            diffSq=Math.pow(diff,2);
+            sumDiffSq += diffSq;
+        }
+        double denom = transactions.getTransSet().size();
+        return Math.sqrt(sumDiffSq/denom);
+    }
+    
 }
