@@ -12,28 +12,30 @@ import java.util.TreeSet;
  *
  * @author Zach
  */
-public class UserTransactionSet {
+public class AllUsersAndTransactions {
     
     private HashMap<Integer,User> allUsers;
     private HashSet<User> allUsersSet;
     
-    private TreeSet<Transaction> all_NT_Transactions;
-    private int numberTranscations; 
-    
-    public UserTransactionSet(){
+    private TransactionSet transactionSet;
+
+    public AllUsersAndTransactions(){
         allUsers = new HashMap<>();
         allUsersSet = new HashSet<>();
     }
     
-    public UserTransactionSet(int firstUserId){
+    public AllUsersAndTransactions(int firstUserId){
         this();
         addUser(firstUserId);
     }
     
     public void addUser(int newUserId){
-        User newUser = new User(newUserId);
-        allUsers.put(newUserId,newUser);
-        allUsersSet.add(newUser);
+        if(allUsers.containsKey(newUserId)){
+            User newUser = new User(newUserId);
+            allUsers.put(newUserId,newUser);
+            allUsersSet.add(newUser);
+            transactionSet.incrementMaxSize();
+        }
     }
     
     public User getUser(int id){
@@ -47,8 +49,7 @@ public class UserTransactionSet {
     public HashSet<User> getAllUsersSet() {
         return allUsersSet;
     }
-////
-    
+
     public void addFriendship(int user1id, int user2id){
         SocialNetworkHelper.beginFriendship(allUsers.get(user1id), allUsers.get(user2id));
     }

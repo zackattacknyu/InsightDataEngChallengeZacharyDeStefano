@@ -13,7 +13,8 @@ import java.util.TreeSet;
  */
 public class TransactionSet {
     
-    public int maximumSize;
+    
+    public int maximumSize = TransactionHelper.MAXIMUM_NUMBER_TRANSACTIONS_IN_NETWORK;
     public int currentSize=0;
     
     /*
@@ -26,10 +27,13 @@ public class TransactionSet {
     public TreeSet<Transaction> transSet;
     
     public TransactionSet(int maxSize){
-        this.maximumSize=maxSize;
         transSet = new TreeSet<>();
         lastTransNumberUsed = new HashMap<>();
         numTransPerTime = new HashMap<>();
+    }
+    
+    public void incrementMaxSize(){
+        maximumSize = maximumSize + TransactionHelper.MAXIMUM_NUMBER_TRANSACTIONS_IN_NETWORK;
     }
     
     public Transaction addToSet(User userX,long transTime,double amount){

@@ -5,7 +5,7 @@
 package zrdnetworkdata;
 
 import java.util.HashSet;
-import java.util.TreeMap;
+import java.util.Iterator;
 import java.util.TreeSet;
 
 /**
@@ -25,7 +25,6 @@ public class User {
     private TreeSet<Transaction> pastTransactionsInNetwork;
     
     private HashSet<User> neighbors;
-    //private HashSet<User> socialNetwork;
     
     public User(int id){
         idNumber=id;
@@ -40,6 +39,22 @@ public class User {
         neighbors.add(neighbor);
     }
     
+    public void recalculatePastTransactions(TreeSet<Transaction> globalSet){
+        pastTransactionsInNetwork = new TreeSet<>();
+        Iterator mostRecentTransactions = globalSet.descendingIterator();
+        HashSet<User> socialNetwork = SocialNetworkHelper.obtainSocialNetworkForUser(this);
+        int numberTransactionsIncluded = 0;
+        Transaction currentTrans;
+        while(mostRecentTransactions.hasNext() && 
+                numberTransactionsIncluded < TransactionHelper.MAXIMUM_NUMBER_TRANSACTIONS_IN_NETWORK){
+            
+            currentTrans = (Transaction) mostRecentTransactions.next();
+            if(socialNetwork.contains(currentTrans.getTransactionUser())){
+                
+            }
+            
+        }
+    }
 
     public HashSet<User> getNeighbors() {
         return neighbors;

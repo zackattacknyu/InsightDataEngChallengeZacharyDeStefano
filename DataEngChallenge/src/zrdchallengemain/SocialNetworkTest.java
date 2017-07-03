@@ -8,7 +8,7 @@ import java.util.Calendar;
 import java.util.HashSet;
 import zrdnetworkdata.SocialNetworkHelper;
 import zrdnetworkdata.User;
-import zrdnetworkdata.UserTransactionSet;
+import zrdnetworkdata.AllUsersAndTransactions;
 
 /**
  *
@@ -38,7 +38,7 @@ public class SocialNetworkTest {
          * Test1: Original Network above
          */
         System.out.println("----------Test 1: Original Network------------");
-        UserTransactionSet test1set = constructNetwork1();
+        AllUsersAndTransactions test1set = constructNetwork1();
         displayNetworkWithDifferentNumConnections(test1set,1,4);
         displayLines();
         
@@ -69,7 +69,7 @@ public class SocialNetworkTest {
          *    8     9
          */
         System.out.println("------Test 4: New Network------------");
-        UserTransactionSet net4 = constructNetwork4();
+        AllUsersAndTransactions net4 = constructNetwork4();
         displayNetworkWithDifferentNumConnections(net4,1,6);
         displayLines();
         
@@ -87,7 +87,7 @@ public class SocialNetworkTest {
          */
         System.out.println("------Test 4: Random Network------------");
         long startingTime = Calendar.getInstance().getTimeInMillis();
-        UserTransactionSet randNet = constructLargeRandomNetwork();
+        AllUsersAndTransactions randNet = constructLargeRandomNetwork();
         long endingTime = Calendar.getInstance().getTimeInMillis();
         SocialNetworkHelper.numDegreesSocialNetwork=1;
         displayRandomPartsOfNetwork(randNet,20);
@@ -101,7 +101,7 @@ public class SocialNetworkTest {
         System.out.println("-----------------------------------");
     }
     
-    public static void displayNetworkWithDifferentNumConnections(UserTransactionSet theSet,int minNum, int maxNum){
+    public static void displayNetworkWithDifferentNumConnections(AllUsersAndTransactions theSet,int minNum, int maxNum){
         for(int numConn = minNum; numConn <= maxNum; numConn++){
             System.out.println("Network with Number Connections set to: " + numConn);
             SocialNetworkHelper.numDegreesSocialNetwork=numConn;
@@ -110,7 +110,7 @@ public class SocialNetworkTest {
         }
     }
     
-    public static UserTransactionSet constructLargeRandomNetwork(){
+    public static AllUsersAndTransactions constructLargeRandomNetwork(){
         /*
          * There were 100,000 "befriend" actions in the large json file
          *      so I will use 1,000,000 users an upper bound on the number
@@ -120,7 +120,7 @@ public class SocialNetworkTest {
         int numUsers = (int)Math.pow(10, 6);
         int numFriendActions = (int)(5*Math.pow(10,6));
         
-        UserTransactionSet theSet = new UserTransactionSet();
+        AllUsersAndTransactions theSet = new AllUsersAndTransactions();
         for(int kk=0; kk < numUsers; kk++){
             theSet.addUser(kk);
         }
@@ -144,8 +144,8 @@ public class SocialNetworkTest {
         return theSet;
     }
     
-    public static UserTransactionSet constructNetwork4(){
-        UserTransactionSet theSet = new UserTransactionSet();
+    public static AllUsersAndTransactions constructNetwork4(){
+        AllUsersAndTransactions theSet = new AllUsersAndTransactions();
         for(int kk=1;kk<=14;kk++){
             theSet.addUser(kk);
         }
@@ -163,8 +163,8 @@ public class SocialNetworkTest {
         return theSet;
     }
     
-    public static UserTransactionSet constructNetwork1(){
-        UserTransactionSet theSet = new UserTransactionSet();
+    public static AllUsersAndTransactions constructNetwork1(){
+        AllUsersAndTransactions theSet = new AllUsersAndTransactions();
         for(int kk=1;kk<=6;kk++){
             theSet.addUser(kk);
         }
@@ -179,7 +179,7 @@ public class SocialNetworkTest {
         return theSet;
     }
     
-    public static void displayNetwork(UserTransactionSet theSet){
+    public static void displayNetwork(AllUsersAndTransactions theSet){
         
         
         for(User user:theSet.getAllUsersSet()){
@@ -187,7 +187,7 @@ public class SocialNetworkTest {
         }
     }
     
-    public static void displayRandomPartsOfNetwork(UserTransactionSet theSet,int numRandom){
+    public static void displayRandomPartsOfNetwork(AllUsersAndTransactions theSet,int numRandom){
         
         HashSet<Integer> displayed = new HashSet<Integer>();
         int currentNumDisplayed = 0;
