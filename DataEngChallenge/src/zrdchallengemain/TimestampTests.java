@@ -6,6 +6,7 @@ package zrdchallengemain;
 
 import java.sql.Timestamp;
 import java.util.Calendar;
+import zrdnetworkdata.TimestampHelper;
 
 /**
  *
@@ -45,9 +46,9 @@ public class TimestampTests {
     }
     public static void runTestForTime(String timestamp){
         
-        Timestamp currentTime = Timestamp.valueOf(timestamp);
+        long currentMillis = TimestampHelper.getMillisTime(timestamp);
         Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(currentTime.getTime());
+        calendar.setTimeInMillis(currentMillis);
         
         System.out.println("Year:" + calendar.get(Calendar.YEAR) + 
                 " Month:" + calendar.get(Calendar.MONTH) + 

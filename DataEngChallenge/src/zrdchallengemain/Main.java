@@ -19,6 +19,6 @@ public class Main {
         //readJsonFile.exampleRun();
         //SocialNetworkTest.runTests();
         //TimestampTests.runTests();
-        readJsonFile.exampleRun();
+        JsonFileTest.runTests();
     }
 }

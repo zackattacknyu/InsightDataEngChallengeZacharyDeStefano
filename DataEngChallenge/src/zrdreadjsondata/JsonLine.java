@@ -8,6 +8,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import zrdnetworkdata.SocialNetworkHelper;
+import zrdnetworkdata.TimestampHelper;
 
 /**
  *
@@ -33,6 +34,7 @@ public class JsonLine {
     double amount;
     int Dvalue;
     int Tvalue;
+    long timestampMillis;
     
     String eventType;
     String timestamp;
@@ -93,6 +95,7 @@ public class JsonLine {
         
         eventType = el.get(EVENT_TYPE_FIELD_STRING).getAsString();
         timestamp = el.get(TIMESTAMP_FIELD_STRING).getAsString();
+        timestampMillis = TimestampHelper.getMillisTime(timestamp);        
         if(eventType.equals(PURCHASE_EVENT_NAME)){
             handlePurchaseEvent();
         }else if(eventType.equals(UNFRIEND_EVENT_NAME) || 
@@ -127,5 +130,36 @@ public class JsonLine {
     public boolean isValidLine() {
         return validLine;
     }
+    
+    
+    public void displayLineData(){
+        String friendInfoStr = "The users " + user1 + " and " + user2;
+        String timeInfoStr = " on " + timestamp + 
+                        " which is " + timestampMillis +" in millis";
+        switch(eventNumber){
+            case 0: 
+                System.out.println("INVALID LINE");
+                break;
+            case 1:
+                System.out.println("PARAMETERS SPECIFIED:: D:" + Dvalue + 
+                        "  " + Tvalue);
+                break;
+            case 2:
+                System.out.println("PURCHASE EVENT: User " + userX + 
+                                " bought " + amount + timeInfoStr);   
+                break;
+            case 3:
+                System.out.println("FRIEND EVENT: " + friendInfoStr + 
+                        " became friends" + timeInfoStr);
+                break;
+            case 4:
+                System.out.println("UNFRIEND EVENT: " + friendInfoStr + 
+                        " ended friendship" + timeInfoStr);
+                break;
+                
+                       
+        }
+    }
+    
     
 }
