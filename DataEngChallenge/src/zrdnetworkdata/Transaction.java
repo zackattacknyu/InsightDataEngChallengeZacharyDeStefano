@@ -88,6 +88,14 @@ public class Transaction implements Comparable{
         return -1;
     }
 
+    @Override
+    public String toString() {
+        return "Transaction{" + "time=" + transactionTime + 
+                ", numInSeq=" + transactionNumberInSequence + 
+                ", amount=" + amount + 
+                ", user=" + transactionUser.hashCode() + '}';
+    }
+
     
 
     

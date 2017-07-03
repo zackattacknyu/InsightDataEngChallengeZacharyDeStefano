@@ -29,9 +29,10 @@ public class TransactionSet {
         this.maximumSize=maxSize;
         transSet = new TreeSet<>();
         lastTransNumberUsed = new HashMap<>();
+        numTransPerTime = new HashMap<>();
     }
     
-    public void addToSet(User userX,long transTime,double amount){
+    public Transaction addToSet(User userX,long transTime,double amount){
         int transNumber = addToHashMap(lastTransNumberUsed,transTime);
         addToHashMap(numTransPerTime,transTime);
         
@@ -42,7 +43,7 @@ public class TransactionSet {
             removeEarliest();
         }
         transSet.add(trans);
-        
+        return trans;
     }
     
     private int addToHashMap(HashMap<Long,Integer> toAdd, long transTime){

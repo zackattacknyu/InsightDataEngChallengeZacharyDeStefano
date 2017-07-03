@@ -18,5 +18,6 @@ public class Main {
         //SocialNetworkTest.runTests();
         //TimestampTests.runTests();
         //JsonFileTest.runTests();
+        TransactionSetTest.runTests();
     }
 }
