@@ -48,13 +48,13 @@ public class ProcessJsonInformation {
                     TransactionHelper.MAXIMUM_NUMBER_TRANSACTIONS_IN_NETWORK=myline.getTvalue();
                     break;
                 case 2: //purchase
-                    allData.addJsonTranscation(myline.getUserX(), myline.getTimestampMillis(), myline.getAmount());
+                    allData.addJsonTranscation(myline.getUserX(), myline.getTimestampMillis(), myline.getAmount(),streamFlag);
                     break;
                 case 3: //friend
-                    allData.addFriendship(myline.getUser1(), myline.getUser2());
+                    allData.addFriendship(myline.getUser1(), myline.getUser2(),streamFlag);
                     break;
                 case 4: //unfriend
-                    allData.removeFriendship(myline.getUser1(), myline.getUser2());
+                    allData.removeFriendship(myline.getUser1(), myline.getUser2(),streamFlag);
                     break;
                            
             }

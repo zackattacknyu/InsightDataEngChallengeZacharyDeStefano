@@ -56,11 +56,30 @@ public class AllUsersAndTransactions {
     }
 
     public void addFriendship(int user1id, int user2id){
-        SocialNetworkHelper.beginFriendship(addUser(user1id), addUser(user2id));
+        addFriendship(user1id,user2id,false);
+    }
+    public void addFriendship(int user1id, int user2id,boolean stream){
+        User user1=addUser(user1id); User user2= addUser(user2id);
+        SocialNetworkHelper.beginFriendship(user1,user2);
+        updateLogsForUsers(stream,user1,user2);
+    }
+    
+    private void updateLogsForUsers(boolean stream,User user1, User user2){
+        if(!stream) return;
+        HashSet<User> nodesToUpdate = SocialNetworkHelper.obtainUsersToUpdate(user1, user2);
+        for(User user:nodesToUpdate){
+            user.recalculatePastTransactions(transactionSet);
+            user.recalculateAll();
+        }
     }
     
     public void removeFriendship(int user1id,int user2id){
-        SocialNetworkHelper.endFriendship(addUser(user1id), addUser(user2id));
+        removeFriendship(user1id,user2id,false);
+    }
+    public void removeFriendship(int user1id, int user2id,boolean stream){
+        User user1=addUser(user1id); User user2= addUser(user2id);
+        SocialNetworkHelper.endFriendship(user1,user2);
+        updateLogsForUsers(stream,user1,user2);
     }
     
     public void calculateTransForAllUsers(){
@@ -80,30 +99,16 @@ public class AllUsersAndTransactions {
     }
     
     public void addJsonTranscation(int userId, long transTime, double amount){
+        addJsonTranscation(userId,transTime,amount,false);
+    }
+    public void addJsonTranscation(int userId, long transTime, double amount,boolean stream){
         User user0=addUser(userId);
         addToTransSet(user0,transTime,amount);
+        if(stream){
+            user0.recalculateAll();
+        }
     }
-    
-    public void addPurchase(Transaction trans){
-        /*
-         * Add the transaction to the large set of transcations
-         */
-        
-        /*
-         * If the set of transcations is now over a certain size,
-         * delete the last entries until it is the correct size
-         */
-        
-        /*
-         * Update transcation logs for every user
-         * in the social network
-         */
-        
-        /*
-         * Check if for any user, a flag was set
-         */
-        
-    }
+
     
     
 }
