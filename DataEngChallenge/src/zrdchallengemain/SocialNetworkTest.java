@@ -125,6 +125,14 @@ public class SocialNetworkTest {
             theSet.addUser(kk);
         }
         
+        theSet = addRandomFriendships(theSet,numFriendActions);
+        
+        
+        return theSet;
+    }
+    
+    public static AllUsersAndTransactions addRandomFriendships(AllUsersAndTransactions theSet,int numFriendActions){
+        int numUsers = theSet.getNumUsers();
         for(int kk=0; kk < numFriendActions; kk++){
             
             int randId1 = (int)(Math.floor(numUsers*Math.random()));
@@ -140,7 +148,6 @@ public class SocialNetworkTest {
             
             
         }
-        
         return theSet;
     }
     
@@ -194,7 +201,7 @@ public class SocialNetworkTest {
         int currentIndex;
         
         while(currentNumDisplayed < numRandom){
-            currentIndex = (int)Math.floor(theSet.getNumberUsers()*Math.random());
+            currentIndex = (int)Math.floor(theSet.getNumUsers()*Math.random());
             if(!displayed.contains(currentIndex)){
                 displayed.add(currentIndex);
                 currentNumDisplayed++;

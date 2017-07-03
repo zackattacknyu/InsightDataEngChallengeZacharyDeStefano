@@ -5,8 +5,6 @@
 package zrdnetworkdata;
 
 import java.util.HashSet;
-import java.util.Iterator;
-import java.util.TreeSet;
 
 /**
  *
@@ -22,7 +20,7 @@ public class User {
     private double sumXi;
     private double sumXiSquared;
     
-    private TreeSet<Transaction> pastTransactionsInNetwork;
+    private TransactionSet pastTransactionsInNetwork;
     
     private HashSet<User> neighbors;
     
@@ -39,21 +37,8 @@ public class User {
         neighbors.add(neighbor);
     }
     
-    public void recalculatePastTransactions(TreeSet<Transaction> globalSet){
-        pastTransactionsInNetwork = new TreeSet<>();
-        Iterator mostRecentTransactions = globalSet.descendingIterator();
-        HashSet<User> socialNetwork = SocialNetworkHelper.obtainSocialNetworkForUser(this);
-        int numberTransactionsIncluded = 0;
-        Transaction currentTrans;
-        while(mostRecentTransactions.hasNext() && 
-                numberTransactionsIncluded < TransactionHelper.MAXIMUM_NUMBER_TRANSACTIONS_IN_NETWORK){
-            
-            currentTrans = (Transaction) mostRecentTransactions.next();
-            if(socialNetwork.contains(currentTrans.getTransactionUser())){
-                
-            }
-            
-        }
+    public void recalculatePastTransactions(TransactionSet globalSet){
+        pastTransactionsInNetwork = TransactionHelper.calculateUsersSet(this, globalSet);
     }
 
     public HashSet<User> getNeighbors() {
@@ -63,6 +48,12 @@ public class User {
     public HashSet<User> getSocialNetwork(){
         return SocialNetworkHelper.obtainSocialNetworkForUser(this);
     }
+
+    public TransactionSet getPastTransactionsInNetwork() {
+        return pastTransactionsInNetwork;
+    }
+    
+    
 
 
     public void recalculateNetwork(){

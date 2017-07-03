@@ -11,7 +11,7 @@ import java.util.HashSet;
  * @author Zach
  */
 public class SocialNetworkHelper {
-    public static int numDegreesSocialNetwork;
+    public static int numDegreesSocialNetwork=2;
     
     public static void endFriendship(User user1, User user2){
         /*

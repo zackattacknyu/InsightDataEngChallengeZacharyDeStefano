@@ -22,6 +22,7 @@ public class AllUsersAndTransactions {
     public AllUsersAndTransactions(){
         allUsers = new HashMap<>();
         allUsersSet = new HashSet<>();
+        transactionSet = new TransactionSet();
     }
     
     public AllUsersAndTransactions(int firstUserId){
@@ -29,22 +30,26 @@ public class AllUsersAndTransactions {
         addUser(firstUserId);
     }
     
-    public void addUser(int newUserId){
-        if(allUsers.containsKey(newUserId)){
+    public int getNumUsers(){
+        return allUsers.size();
+    }
+    
+    public User addUser(int newUserId){
+        if(!allUsers.containsKey(newUserId)){
             User newUser = new User(newUserId);
             allUsers.put(newUserId,newUser);
             allUsersSet.add(newUser);
             transactionSet.incrementMaxSize();
+            return newUser;
+        }else{
+            return allUsers.get(newUserId);
         }
     }
     
     public User getUser(int id){
         return allUsers.get(id);
     }
-    
-    public int getNumberUsers(){
-        return allUsers.size();
-    }
+   
 
     public HashSet<User> getAllUsersSet() {
         return allUsersSet;
@@ -58,8 +63,15 @@ public class AllUsersAndTransactions {
         SocialNetworkHelper.endFriendship(allUsers.get(user1id), allUsers.get(user2id));
     }
     
+    public void calculateTransForAllUsers(){
+        for(User user: allUsersSet){
+            user.recalculatePastTransactions(transactionSet);
+        }
+    }
     
-    
+    public void addToTransSet(User userX,long transTime,double amount){
+        transactionSet.addToSet(userX, transTime, amount);
+    }
     
     public void addPurchase(Transaction trans){
         /*

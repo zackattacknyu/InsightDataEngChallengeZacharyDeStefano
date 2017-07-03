@@ -25,8 +25,11 @@ public class TransactionSet {
     public HashMap<Long,Integer> numTransPerTime;
     
     public TreeSet<Transaction> transSet;
-    
+    public TransactionSet(){
+        this(TransactionHelper.MAXIMUM_NUMBER_TRANSACTIONS_IN_NETWORK);
+    }
     public TransactionSet(int maxSize){
+        this.maximumSize = maxSize;
         transSet = new TreeSet<>();
         lastTransNumberUsed = new HashMap<>();
         numTransPerTime = new HashMap<>();
@@ -41,13 +44,17 @@ public class TransactionSet {
         addToHashMap(numTransPerTime,transTime);
         
         Transaction trans=new Transaction(transTime,transNumber,amount,userX);
+        addTransaction(trans);
+        return trans;
+    }
+    
+    public void addTransaction(Transaction trans){
         if(currentSize < maximumSize){
             currentSize++;
         }else{
             removeEarliest();
         }
         transSet.add(trans);
-        return trans;
     }
     
     private int addToHashMap(HashMap<Long,Integer> toAdd, long transTime){
@@ -62,6 +69,11 @@ public class TransactionSet {
     
     private void removeEarliest(){
         Transaction lastOne = transSet.pollFirst();
+        
+        if(numTransPerTime.isEmpty()){
+            return;
+        }
+        
         long transTime = lastOne.getTransactionTime();
         if(numTransPerTime.get(transTime) < 2){
             numTransPerTime.remove(transTime);
@@ -70,6 +82,10 @@ public class TransactionSet {
             int currentNumTrans = numTransPerTime.get(transTime);
             numTransPerTime.put(transTime, currentNumTrans-1);
         }
+    }
+
+    public TreeSet<Transaction> getTransSet() {
+        return transSet;
     }
     
 
