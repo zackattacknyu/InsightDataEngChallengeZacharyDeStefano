@@ -56,11 +56,11 @@ public class AllUsersAndTransactions {
     }
 
     public void addFriendship(int user1id, int user2id){
-        SocialNetworkHelper.beginFriendship(allUsers.get(user1id), allUsers.get(user2id));
+        SocialNetworkHelper.beginFriendship(addUser(user1id), addUser(user2id));
     }
     
     public void removeFriendship(int user1id,int user2id){
-        SocialNetworkHelper.endFriendship(allUsers.get(user1id), allUsers.get(user2id));
+        SocialNetworkHelper.endFriendship(addUser(user1id), addUser(user2id));
     }
     
     public void calculateTransForAllUsers(){
@@ -71,6 +71,11 @@ public class AllUsersAndTransactions {
     
     public void addToTransSet(User userX,long transTime,double amount){
         transactionSet.addToSet(userX, transTime, amount);
+    }
+    
+    public void addJsonTranscation(int userId, long transTime, double amount){
+        User user0=addUser(userId);
+        addToTransSet(user0,transTime,amount);
     }
     
     public void addPurchase(Transaction trans){

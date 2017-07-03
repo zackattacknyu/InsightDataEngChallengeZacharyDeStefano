@@ -11,7 +11,6 @@ import zrdnetworkdata.AllUsersAndTransactions;
 import zrdnetworkdata.SocialNetworkHelper;
 import zrdnetworkdata.Transaction;
 import zrdnetworkdata.TransactionHelper;
-import zrdnetworkdata.TransactionSet;
 import zrdnetworkdata.User;
 
 /**

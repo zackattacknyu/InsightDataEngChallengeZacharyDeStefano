@@ -19,6 +19,7 @@ public class Main {
         //TimestampTests.runTests();
         //JsonFileTest.runTests();
         //TransactionSetTest.runTests();
-        UserTransactionTest.runTest();
+        //UserTransactionTest.runTest();
+        ProcessJsonInformation.runProcess();
     }
 }

@@ -171,6 +171,38 @@ public class JsonLine {
                        
         }
     }
+
+    public int getEventNumber() {
+        return eventNumber;
+    }
+
+    public int getUser1() {
+        return user1;
+    }
+
+    public int getUser2() {
+        return user2;
+    }
+
+    public int getUserX() {
+        return userX;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public int getDvalue() {
+        return Dvalue;
+    }
+
+    public int getTvalue() {
+        return Tvalue;
+    }
+
+    public long getTimestampMillis() {
+        return timestampMillis;
+    }
     
     
 }
