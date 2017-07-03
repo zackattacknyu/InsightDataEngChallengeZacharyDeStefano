@@ -63,6 +63,10 @@ public class JsonLine {
     boolean validLine=true;
     
     private JsonObject el;
+    
+    public JsonLine(){
+        validLine=false;
+    }
 
     
     public JsonLine(JsonParser jsonParser,String jsonLine){
@@ -131,8 +135,15 @@ public class JsonLine {
         return validLine;
     }
     
-    
     public void displayLineData(){
+        if(validLine){
+            displayValidLineData();
+        }else{
+            System.out.println();
+        }
+    }
+    
+    private void displayValidLineData(){
         String friendInfoStr = "The users " + user1 + " and " + user2;
         String timeInfoStr = " on " + timestamp + 
                         " which is " + timestampMillis +" in millis";
