@@ -14,18 +14,30 @@ import java.util.TreeSet;
 public class TransactionSet {
     
     public int maximumSize;
-    public int currentSize;
+    public int currentSize=0;
     
     /*
      * Handle conflicting timestamps
      */
     
-    public HashMap<Long,Integer> mapOfNextTransactionNumberToUse;
-    public HashMap<Long,Integer> mapOfNumberTransactionsByTimestamp;
+    public HashMap<Long,Integer> lastTransNumberUsed;
     
     public TreeSet<Transaction> transSet;
     
-    public void addToSet(Transaction trans){
+    private void addToSet(User userX,long transTime,double amount){
+        int transNumberUse=0;
+        if(lastTransNumberUsed.containsKey(transTime)){
+            transNumberUse=lastTransNumberUsed.get(transTime);
+        }
+        
+        transNumberUse++;
+        
+        addToSet(new Transaction(transTime,transNumberUse,amount,userX));
+        
+        lastTransNumberUsed.put(transTime,transNumberUse);
+    }
+    
+    private void addToSet(Transaction trans){
         
         if(currentSize < maximumSize){
             currentSize++;

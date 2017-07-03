@@ -16,7 +16,7 @@ public class Main {
     public static void main(String[] args) {
         //readJsonFile.exampleRun();
         //SocialNetworkTest.runTests();
-        TimestampTests.runTests();
-        JsonFileTest.runTests();
+        //TimestampTests.runTests();
+        //JsonFileTest.runTests();
     }
 }
