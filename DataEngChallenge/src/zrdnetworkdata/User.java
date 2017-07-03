@@ -13,11 +13,9 @@ import java.util.HashSet;
 public class User {
     
     private int idNumber;
-    private double meanOfTnetworkTransactions;
-    private double stdOfTnetworkTransactions;
     
     //used in the mean, std calculation
-    private double sumXi,sumXiSquared,mean,std;
+    private double mean,std;
     
     private TransactionSet pastTransactionsInNetwork;
     
@@ -58,19 +56,8 @@ public class User {
         std = TransactionHelper.getStd(pastTransactionsInNetwork);        
     }
     
-    private void recalculateMeanAndStd(){
-        
-        /*
-         * When one transaction is added to a user's list, 
-         * there might be one removed
-         * 
-         * This updates sumXi and sumXiSquared based on the addition
-         *  and removal and then recalculates the mean and Std
-         * 
-         * Mean = SumXi/N
-         * Std = Sqrt( Mean^2 + 1/N ( sumXi - 2*Mean*SumXi ) ) 
-         */
-        
+    public boolean isAmountAnamolous(double amount){
+        return TransactionHelper.isAnamoly(amount, mean, std);
     }
     
     

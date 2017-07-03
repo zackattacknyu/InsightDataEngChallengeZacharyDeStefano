@@ -8,6 +8,7 @@ import java.util.Calendar;
 import zrdnetworkdata.AllUsersAndTransactions;
 import zrdnetworkdata.SocialNetworkHelper;
 import zrdnetworkdata.TransactionHelper;
+import zrdnetworkdata.User;
 import zrdreadjsondata.JsonFile;
 import zrdreadjsondata.JsonLine;
 
@@ -39,7 +40,9 @@ public class ProcessJsonInformation {
     public static AllUsersAndTransactions processLogFile(AllUsersAndTransactions allData,String jsonFile, boolean streamFlag){
         long startT = Calendar.getInstance().getTimeInMillis();
         JsonFile myfile = new JsonFile(jsonFile);
+        int numberAnomalies = 0;
         JsonLine myline;
+        User userx;
         while(myfile.hasMoreData()){
             myline = myfile.getNextLine();
             switch(myline.getEventNumber()){
@@ -48,13 +51,16 @@ public class ProcessJsonInformation {
                     TransactionHelper.MAXIMUM_NUMBER_TRANSACTIONS_IN_NETWORK=myline.getTvalue();
                     break;
                 case 2: //purchase
-                    allData.addJsonTranscation(myline.getUserX(), myline.getTimestampMillis(), myline.getAmount(),streamFlag);
+                    userx=allData.addJsonTranscation(myline.getUserX(), myline.getTimestampMillis(), myline.getAmount(),streamFlag);
+                    if(streamFlag && userx.isAmountAnamolous(myline.getAmount())){
+                        numberAnomalies++;
+                    }
                     break;
                 case 3: //friend
-                    allData.addFriendship(myline.getUser1(), myline.getUser2(),streamFlag);
+                    allData.addFriendship(myline.getUser1(), myline.getUser2());
                     break;
                 case 4: //unfriend
-                    allData.removeFriendship(myline.getUser1(), myline.getUser2(),streamFlag);
+                    allData.removeFriendship(myline.getUser1(), myline.getUser2());
                     break;
                            
             }
@@ -70,6 +76,10 @@ public class ProcessJsonInformation {
         endT=Calendar.getInstance().getTimeInMillis();
         elapsed = (endT-startT)/1000.0;
         System.out.println("CALCULATING MEAN AND STD FOR ALL USERS TOOK " + elapsed + " SECONDS");
+        
+        if(streamFlag){
+            System.out.println("TOTAL ANOMALIES DETECTED: " + numberAnomalies);
+        }
         
         return allData;
     }  

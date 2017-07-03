@@ -59,4 +59,8 @@ public class TransactionHelper {
         return Math.sqrt(sumDiffSq/denom);
     }
     
+    public static boolean isAnamoly(double amount, double mean, double std){
+        return (amount > (mean + 3*std));
+    }
+    
 }
