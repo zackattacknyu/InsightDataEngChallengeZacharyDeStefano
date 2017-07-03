@@ -20,11 +20,24 @@ public class ProcessJsonInformation {
     
     public static void runProcess(){
         
-        long startT = Calendar.getInstance().getTimeInMillis();
+        
         AllUsersAndTransactions allData = new AllUsersAndTransactions();
+        String jsonFile = "jsonFiles/batch_log_large.json";
         
         //get batch log data
-        String jsonFile = "jsonFiles/batch_log_large.json";
+        System.out.println("------BATCH LOG FILE--------------");
+        allData = processLogFile(allData,jsonFile,false);
+        System.out.println("-----------------");
+        
+        System.out.println();
+        System.out.println("------STREAM LOG FILE--------------");
+        String jsonFile2 = "jsonFiles/stream_log_large.json";
+        allData = processLogFile(allData,jsonFile2,true);
+        System.out.println("-----------------");
+    }
+    
+    public static AllUsersAndTransactions processLogFile(AllUsersAndTransactions allData,String jsonFile, boolean streamFlag){
+        long startT = Calendar.getInstance().getTimeInMillis();
         JsonFile myfile = new JsonFile(jsonFile);
         JsonLine myline;
         while(myfile.hasMoreData()){
@@ -50,13 +63,15 @@ public class ProcessJsonInformation {
         long endT = Calendar.getInstance().getTimeInMillis();
         
         double elapsed = (endT-startT)/1000.0;
-        System.out.println("PROCESSING LARGE LOG FILE TOOK " + elapsed + " SECONDS");
+        System.out.println("PROCESSING LOG FILE TOOK " + elapsed + " SECONDS");
         
         startT=Calendar.getInstance().getTimeInMillis();
         allData.calculateMeanStdForAllUsers();
         endT=Calendar.getInstance().getTimeInMillis();
         elapsed = (endT-startT)/1000.0;
         System.out.println("CALCULATING MEAN AND STD FOR ALL USERS TOOK " + elapsed + " SECONDS");
-    }
+        
+        return allData;
+    }  
     
 }
