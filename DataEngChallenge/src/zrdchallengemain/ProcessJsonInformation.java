@@ -70,18 +70,18 @@ public class ProcessJsonInformation {
             }
         }
         
-        if(streamFlag) theFile.close();
+        if(streamFlag){
+            theFile.close();
+            System.out.println("FINISHED WRITING FLAGGED PURCHASES FILE");
+        }
         allData.calculateTransForAllUsers();
         long endT = Calendar.getInstance().getTimeInMillis();
         
         double elapsed = (endT-startT)/1000.0;
         System.out.println("PROCESSING LOG FILE TOOK " + elapsed + " SECONDS");
         
-        startT=Calendar.getInstance().getTimeInMillis();
         allData.calculateMeanStdForAllUsers();
-        endT=Calendar.getInstance().getTimeInMillis();
-        elapsed = (endT-startT)/1000.0;
-        System.out.println("CALCULATING MEAN AND STD FOR ALL USERS TOOK " + elapsed + " SECONDS");
+        
         
         if(streamFlag){
             System.out.println("TOTAL ANOMALIES DETECTED: " + numberAnomalies);
