@@ -19,7 +19,7 @@ public class UnitTest_JsonFiles {
         /*
          * Test 1: Make sure we are reading batch log file correctly
          */
-        String jsonFile = "jsonFiles/batch_log.json";
+        String jsonFile = "log_input/batch_log.json";
         System.out.println();
         System.out.println("-------DATA FROM BATCH LOG FILE:-------");
         displayDataFromJsonFile(jsonFile,1);
@@ -29,14 +29,14 @@ public class UnitTest_JsonFiles {
          */
         System.out.println();
         System.out.println("-------DATA FROM STREAM LOG FILE:-------");
-        jsonFile = "jsonFiles/stream_log.json";
+        jsonFile = "log_input/stream_log.json";
         displayDataFromJsonFile(jsonFile,1);
         
         /*
          * Test 3: Read large batch log file
          *      Display random lines
          */
-        jsonFile = "jsonFiles/batch_log_large.json";
+        jsonFile = "sample_dataset/batch_log.json";
         System.out.println();
         System.out.println("-------DATA FROM LARGE BATCH LOG FILE:-------");
         displayDataFromJsonFile(jsonFile,0.00001);
@@ -45,7 +45,7 @@ public class UnitTest_JsonFiles {
          * Test 4: Read large stream log file
          *      Display random lines
          */
-        jsonFile = "jsonFiles/stream_log_large.json";
+        jsonFile = "sample_dataset/stream_log.json";
         System.out.println();
         System.out.println("-------DATA FROM LARGE STREAM LOG FILE:-------");
         displayDataFromJsonFile(jsonFile,0.01);

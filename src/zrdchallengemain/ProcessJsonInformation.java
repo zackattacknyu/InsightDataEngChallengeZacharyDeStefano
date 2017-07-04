@@ -24,7 +24,7 @@ public class ProcessJsonInformation {
         
         
         AllUsersAndTransactions allData = new AllUsersAndTransactions();
-        String jsonFile = "jsonFiles/batch_log_large.json";
+        String jsonFile = "sample_dataset/batch_log.json";
         
         //get batch log data
         System.out.println("------BATCH LOG FILE--------------");
@@ -33,7 +33,7 @@ public class ProcessJsonInformation {
         
         System.out.println();
         System.out.println("------STREAM LOG FILE--------------");
-        String jsonFile2 = "jsonFiles/stream_log_large.json";
+        String jsonFile2 = "sample_dataset/stream_log.json";
         allData = processLogFile(allData,jsonFile2,true);
         System.out.println("-----------------");
     }

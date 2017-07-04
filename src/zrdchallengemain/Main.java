@@ -20,11 +20,15 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        UnitTest_SocialNetwork.runTests();
-        UnitTest_Timestamp.runTests();
-        UnitTest_JsonFiles.runTests();
-        UnitTest_TransactionSetData.runTests();
-        UnitTest_UserTransactionData.runTest();
+        runUnitTests();
         ProcessJsonInformation.runProcess();
+    }
+    
+    public static void runUnitTests(){
+        //UnitTest_SocialNetwork.runTests();
+        //UnitTest_Timestamp.runTests();
+        UnitTest_JsonFiles.runTests();
+        //UnitTest_TransactionSetData.runTests();
+        //UnitTest_UserTransactionData.runTest();
     }
 }
