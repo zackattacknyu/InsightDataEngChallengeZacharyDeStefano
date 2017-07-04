@@ -4,6 +4,7 @@
  */
 package zrdnetworkdata;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.TreeSet;
@@ -37,26 +38,32 @@ public class TransactionHelper {
     }
     
     public static double getMean(TransactionSet transactions){
+        return getMean(transactions.getAmounts());
+    }
+    
+    public static double getMean(ArrayList<Double> doubleArr){
         double sum = 0;
-        for(Transaction transaction: transactions.getTransSet()){
-            sum += transaction.getAmount();
+        double denom=0;
+        for(Double num: doubleArr){
+            sum+=num; denom++;
         }
-        double denom = transactions.getTransSet().size();
         return sum/denom;
     }
     
-    public static double getStd(TransactionSet transactions){
-        double mean = getMean(transactions);
+    public static double getStd(ArrayList<Double> doubleArr){
+        double mean = getMean(doubleArr); double denom=0;
         double sumDiffSq = 0;
-        double tAmount,diff,diffSq;
-        for(Transaction transaction: transactions.getTransSet()){
-            tAmount = transaction.getAmount();
+        double diff,diffSq;
+        for(Double tAmount: doubleArr){
             diff=tAmount-mean;
             diffSq=Math.pow(diff,2);
-            sumDiffSq += diffSq;
+            sumDiffSq += diffSq; denom++;
         }
-        double denom = transactions.getTransSet().size();
         return Math.sqrt(sumDiffSq/denom);
+    }
+    
+    public static double getStd(TransactionSet transactions){
+        return getStd(transactions.getAmounts());
     }
     
     public static boolean isAnamoly(double amount, double mean, double std){

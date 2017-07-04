@@ -4,6 +4,7 @@
  */
 package zrdnetworkdata;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.TreeSet;
 
@@ -86,6 +87,14 @@ public class TransactionSet {
 
     public TreeSet<Transaction> getTransSet() {
         return transSet;
+    }
+    
+    public ArrayList<Double> getAmounts(){
+        ArrayList<Double> transAmounts = new ArrayList<>(transSet.size());
+        for(Transaction transaction: transSet){
+            transAmounts.add(transaction.getAmount());
+        }
+        return transAmounts;
     }
     
 
