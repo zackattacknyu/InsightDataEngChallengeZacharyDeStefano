@@ -203,6 +203,10 @@ public class JsonLine {
     public long getTimestampMillis() {
         return timestampMillis;
     }
+
+    public JsonObject getEl() {
+        return el;
+    }
     
     
 }

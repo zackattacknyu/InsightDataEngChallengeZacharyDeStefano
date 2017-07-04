@@ -4,6 +4,7 @@
  */
 package zrdreadjsondata;
 
+import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -19,6 +20,7 @@ public class JsonFile {
     private int currentLineNumber=-1;
     JsonParser jsonParser = new JsonParser();
     private boolean fileExists;
+    private JsonLine retLine;
     
     public JsonFile(String file){
         try {
@@ -48,15 +50,20 @@ public class JsonFile {
     private JsonLine getNextValidLine(){
         String nextJsonLine = sc.nextLine();
         currentLineNumber++;
-        JsonLine retLine = new JsonLine(jsonParser,nextJsonLine);
+        retLine = new JsonLine(jsonParser,nextJsonLine);
         if(retLine.isValidLine()){
             return retLine;
         }else{
-            System.out.println("ERROR: LINE " + currentLineNumber + " IS INVALID FOR REASON SPECIFIED ABOVE");
+            System.out.println("ERROR: LINE " + currentLineNumber + 
+                    " IS INVALID FOR REASON SPECIFIED ABOVE");
             return new JsonLine();
         }
         
         
+    }
+    
+    public JsonObject getJsonObject(){
+        return retLine.getEl();
     }
     
 }

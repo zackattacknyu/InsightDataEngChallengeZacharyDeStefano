@@ -53,6 +53,7 @@ public class ProcessJsonInformation {
                 case 2: //purchase
                     userx=allData.addJsonTranscation(myline.getUserX(), myline.getTimestampMillis(), myline.getAmount(),streamFlag);
                     if(streamFlag && userx.isAmountAnamolous(myline.getAmount())){
+                        System.out.println(myfile.getJsonObject());
                         numberAnomalies++;
                     }
                     break;
