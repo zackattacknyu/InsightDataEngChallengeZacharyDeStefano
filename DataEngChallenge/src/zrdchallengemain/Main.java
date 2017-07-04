@@ -24,8 +24,5 @@ public class Main {
         //TransactionSetTest.runTests();
         //UserTransactionTest.runTest();
         ProcessJsonInformation.runProcess();
-//        Path currentRelativePath = Paths.get("");
-//        String s = currentRelativePath.toAbsolutePath().toString();
-//        System.out.println("Current relative path is: " + s);
     }
 }
