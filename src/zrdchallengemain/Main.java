@@ -4,8 +4,11 @@
  */
 package zrdchallengemain;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import zrdunittests.UnitTest_UserTransactionData;
+import zrdunittests.UnitTest_SocialNetwork;
+import zrdunittests.UnitTest_Timestamp;
+import zrdunittests.UnitTest_JsonFiles;
+import zrdunittests.UnitTest_TransactionSetData;
 
 /**
  *
@@ -17,11 +20,11 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        SocialNetworkTest.runTests();
-        TimestampTests.runTests();
-        JsonFileTest.runTests();
-        TransactionSetTest.runTests();
-        UserTransactionTest.runTest();
+        UnitTest_SocialNetwork.runTests();
+        UnitTest_Timestamp.runTests();
+        UnitTest_JsonFiles.runTests();
+        UnitTest_TransactionSetData.runTests();
+        UnitTest_UserTransactionData.runTest();
         ProcessJsonInformation.runProcess();
     }
 }

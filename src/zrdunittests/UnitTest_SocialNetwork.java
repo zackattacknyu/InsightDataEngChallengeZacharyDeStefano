@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package zrdchallengemain;
+package zrdunittests;
 
 import java.util.Calendar;
 import java.util.HashSet;
@@ -14,7 +14,7 @@ import zrdnetworkdata.AllUsersAndTransactions;
  *
  * @author Zach
  */
-public class SocialNetworkTest {
+public class UnitTest_SocialNetwork {
     
     public static void runTests(){
         

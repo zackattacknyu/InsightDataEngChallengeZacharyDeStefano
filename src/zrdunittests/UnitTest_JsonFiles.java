@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package zrdchallengemain;
+package zrdunittests;
 
 import java.util.Calendar;
 import zrdreadjsondata.JsonFile;
@@ -12,7 +12,7 @@ import zrdreadjsondata.JsonLine;
  *
  * @author Zach
  */
-public class JsonFileTest {
+public class UnitTest_JsonFiles {
     
     public static void runTests(){
         

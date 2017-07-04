@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package zrdchallengemain;
+package zrdunittests;
 
 import java.util.Calendar;
 import java.util.Iterator;
@@ -14,7 +14,7 @@ import zrdnetworkdata.User;
  *
  * @author Zach
  */
-public class TransactionSetTest {
+public class UnitTest_TransactionSetData {
     
     public static void runTests(){
         

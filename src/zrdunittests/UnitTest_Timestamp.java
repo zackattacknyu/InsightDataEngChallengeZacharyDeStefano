@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package zrdchallengemain;
+package zrdunittests;
 
 import java.sql.Timestamp;
 import java.util.Calendar;
@@ -12,7 +12,7 @@ import zrdnetworkdata.TimestampHelper;
  *
  * @author Zach
  */
-public class TimestampTests {
+public class UnitTest_Timestamp {
     
     /**
      * This takes a few example timestamps and makes sure they are read

@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package zrdchallengemain;
+package zrdunittests;
 
 import java.util.Calendar;
 import java.util.HashSet;
@@ -17,7 +17,7 @@ import zrdnetworkdata.User;
  *
  * @author Zach
  */
-public class UserTransactionTest {
+public class UnitTest_UserTransactionData {
     
     public static void runTest(){
         TransactionHelper.MAXIMUM_NUMBER_TRANSACTIONS_IN_NETWORK=10;
@@ -47,7 +47,7 @@ public class UserTransactionTest {
             usersTrans.addToTransSet(currentU, currentTime, Math.random()*100);                        
         }
         
-        usersTrans = SocialNetworkTest.addRandomFriendships(usersTrans, numFriendActions);
+        usersTrans = UnitTest_SocialNetwork.addRandomFriendships(usersTrans, numFriendActions);
         usersTrans.calculateTransForAllUsers();
         
         long endTime = Calendar.getInstance().getTimeInMillis();
