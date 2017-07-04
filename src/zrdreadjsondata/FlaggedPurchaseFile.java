@@ -10,8 +10,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.DecimalFormat;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import zrdnetworkdata.User;
 
 /**
@@ -25,9 +23,10 @@ public class FlaggedPurchaseFile {
     private JsonParser jsonParser = new JsonParser();
     DecimalFormat df = new DecimalFormat("###.##");
 
+    public static String FLAGGED_PURCHASE_FILE = "log_output/flagged_purchases.json";
         
     public void init(){
-        outputFile = new File("log_output/flagged_purchases.json");
+        outputFile = new File(FLAGGED_PURCHASE_FILE);
         try {
             outputFile.createNewFile();
             outputFileWrite = new FileWriter(outputFile);

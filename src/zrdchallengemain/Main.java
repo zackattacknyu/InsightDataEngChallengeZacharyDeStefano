@@ -4,12 +4,8 @@
  */
 package zrdchallengemain;
 
-import zrdunittests.UnitTest_UserTransactionData;
-import zrdunittests.UnitTest_SocialNetwork;
-import zrdunittests.UnitTest_Timestamp;
-import zrdunittests.UnitTest_JsonFiles;
+import zrdreadjsondata.FlaggedPurchaseFile;
 import zrdunittests.UnitTest_MeanStdCalculation;
-import zrdunittests.UnitTest_TransactionSetData;
 
 /**
  *
@@ -21,8 +17,19 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        runUnitTests();
-        //ProcessJsonInformation.runProcess();
+        if(args.length==3){
+            ProcessJsonInformation.BATCH_LOG_FILE=args[0];
+            ProcessJsonInformation.STREAM_LOG_FILE=args[1];
+            FlaggedPurchaseFile.FLAGGED_PURCHASE_FILE=args[2];
+        }
+        //runUnitTests();
+        
+        //runs the process json unit test
+        ProcessJsonInformation.runProcess(true);
+        
+        System.out.println(); System.out.println();
+        System.out.println("FINISHED ALL TESTS. NOW DOING COMPUTATION:");
+        ProcessJsonInformation.runProcess(false);
     }
     
     public static void runUnitTests(){

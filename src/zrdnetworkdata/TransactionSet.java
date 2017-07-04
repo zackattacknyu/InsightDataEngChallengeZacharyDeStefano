@@ -89,6 +89,18 @@ public class TransactionSet {
         return transSet;
     }
     
+    public void printAllInfo(){
+        System.out.println("NETWORK TRANSACTION INFO");
+        for(Transaction trans: transSet){
+            System.out.println(trans);
+        }
+        System.out.println();
+        System.out.println("NETWORK TRANSACTION AMOUNTS:");
+        for(Transaction trans: transSet){
+            System.out.println(trans.getAmount());
+        }
+    }
+    
     public ArrayList<Double> getAmounts(){
         ArrayList<Double> transAmounts = new ArrayList<>(transSet.size());
         for(Transaction transaction: transSet){
