@@ -4,6 +4,9 @@
  */
 package zrdchallengemain;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 /**
  *
  * @author Zach
@@ -21,5 +24,8 @@ public class Main {
         //TransactionSetTest.runTests();
         //UserTransactionTest.runTest();
         ProcessJsonInformation.runProcess();
+//        Path currentRelativePath = Paths.get("");
+//        String s = currentRelativePath.toAbsolutePath().toString();
+//        System.out.println("Current relative path is: " + s);
     }
 }

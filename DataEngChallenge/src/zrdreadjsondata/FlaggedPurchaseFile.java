@@ -25,8 +25,8 @@ public class FlaggedPurchaseFile {
     private JsonParser jsonParser = new JsonParser();
     DecimalFormat df = new DecimalFormat("###.##");
 
-    public FlaggedPurchaseFile() {
         
+    public void init(){
         outputFile = new File("log_output/flagged_purchases.json");
         try {
             outputFile.createNewFile();
@@ -36,9 +36,6 @@ public class FlaggedPurchaseFile {
         } catch (IOException ex) {
             System.out.println("IO EXCEPTION WHEN CREATING FLAGGED PURCHASES FILE: " + ex.getMessage());
         }
-        
-        
-        
     }
     
     public void addToFile(JsonObject object, User userdata){

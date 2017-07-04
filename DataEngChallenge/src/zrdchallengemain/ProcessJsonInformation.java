@@ -44,7 +44,8 @@ public class ProcessJsonInformation {
         int numberAnomalies = 0;
         JsonLine myline;
         User userx;
-        FlaggedPurchaseFile theFile = new FlaggedPurchaseFile();
+        FlaggedPurchaseFile theFile= new FlaggedPurchaseFile();
+        if(streamFlag) theFile.init();
         while(myfile.hasMoreData()){
             myline = myfile.getNextLine();
             switch(myline.getEventNumber()){
@@ -69,7 +70,7 @@ public class ProcessJsonInformation {
             }
         }
         
-        theFile.close();
+        if(streamFlag) theFile.close();
         allData.calculateTransForAllUsers();
         long endT = Calendar.getInstance().getTimeInMillis();
         
