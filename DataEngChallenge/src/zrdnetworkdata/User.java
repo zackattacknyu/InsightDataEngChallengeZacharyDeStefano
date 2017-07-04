@@ -80,5 +80,13 @@ public class User {
         }
         return true;
     }
+
+    public double getMean() {
+        return mean;
+    }
+
+    public double getStd() {
+        return std;
+    }
     
 }

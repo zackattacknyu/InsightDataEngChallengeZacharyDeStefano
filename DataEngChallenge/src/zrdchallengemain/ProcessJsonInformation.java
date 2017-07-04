@@ -9,6 +9,7 @@ import zrdnetworkdata.AllUsersAndTransactions;
 import zrdnetworkdata.SocialNetworkHelper;
 import zrdnetworkdata.TransactionHelper;
 import zrdnetworkdata.User;
+import zrdreadjsondata.FlaggedPurchaseFile;
 import zrdreadjsondata.JsonFile;
 import zrdreadjsondata.JsonLine;
 
@@ -43,6 +44,7 @@ public class ProcessJsonInformation {
         int numberAnomalies = 0;
         JsonLine myline;
         User userx;
+        FlaggedPurchaseFile theFile = new FlaggedPurchaseFile();
         while(myfile.hasMoreData()){
             myline = myfile.getNextLine();
             switch(myline.getEventNumber()){
@@ -53,7 +55,7 @@ public class ProcessJsonInformation {
                 case 2: //purchase
                     userx=allData.addJsonTranscation(myline.getUserX(), myline.getTimestampMillis(), myline.getAmount(),streamFlag);
                     if(streamFlag && userx.isAmountAnamolous(myline.getAmount())){
-                        System.out.println(myfile.getJsonObject());
+                        theFile.addToFile(myfile.getJsonObject(), userx);
                         numberAnomalies++;
                     }
                     break;
@@ -66,6 +68,8 @@ public class ProcessJsonInformation {
                            
             }
         }
+        
+        theFile.close();
         allData.calculateTransForAllUsers();
         long endT = Calendar.getInstance().getTimeInMillis();
         
