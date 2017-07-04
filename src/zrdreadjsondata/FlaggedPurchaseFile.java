@@ -9,6 +9,9 @@ import com.google.gson.JsonParser;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.DecimalFormat;
 import zrdnetworkdata.User;
 
@@ -23,17 +26,16 @@ public class FlaggedPurchaseFile {
     private JsonParser jsonParser = new JsonParser();
     DecimalFormat df = new DecimalFormat("###.##");
 
-    public static String FLAGGED_PURCHASE_FILE = "log_output/flagged_purchases.json";
+    public static String FLAGGED_PURCHASE_FILE;
         
     public void init(){
-        outputFile = new File(FLAGGED_PURCHASE_FILE);
         try {
+            outputFile = new File(FLAGGED_PURCHASE_FILE);
             outputFile.createNewFile();
             outputFileWrite = new FileWriter(outputFile);
-            
-            
         } catch (IOException ex) {
             System.out.println("IO EXCEPTION WHEN CREATING FLAGGED PURCHASES FILE: " + ex.getMessage());
+            ex.printStackTrace();
         }
     }
     

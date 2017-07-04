@@ -19,7 +19,7 @@ public class UnitTest_JsonFiles {
         /*
          * Test 1: Make sure we are reading batch log file correctly
          */
-        String jsonFile = "log_input/batch_log.json";
+        String jsonFile = "log_input_small/batch_log.json";
         System.out.println();
         System.out.println("-------DATA FROM BATCH LOG FILE:-------");
         displayDataFromJsonFile(jsonFile,1);
@@ -29,7 +29,7 @@ public class UnitTest_JsonFiles {
          */
         System.out.println();
         System.out.println("-------DATA FROM STREAM LOG FILE:-------");
-        jsonFile = "log_input/stream_log.json";
+        jsonFile = "log_input_small/stream_log.json";
         displayDataFromJsonFile(jsonFile,1);
         
         /*

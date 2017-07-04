@@ -19,8 +19,8 @@ import zrdreadjsondata.JsonLine;
  */
 public class ProcessJsonInformation {
     
-    public static String BATCH_LOG_FILE="sample_dataset/batch_log.json";
-    public static String STREAM_LOG_FILE="sample_dataset/stream_log.json";
+    public static String BATCH_LOG_FILE;
+    public static String STREAM_LOG_FILE;
     
     
     public static void runProcess(boolean testFlag){
@@ -48,7 +48,9 @@ public class ProcessJsonInformation {
         User userx;
         
         FlaggedPurchaseFile theFile= new FlaggedPurchaseFile();
-        if(streamFlag && !testFlag) theFile.init();
+        if(streamFlag && !testFlag){
+            theFile.init();
+        }
         
         while(myfile.hasMoreData()){
             myline = myfile.getNextLine();
