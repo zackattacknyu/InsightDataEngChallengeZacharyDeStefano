@@ -8,6 +8,7 @@ import zrdunittests.UnitTest_UserTransactionData;
 import zrdunittests.UnitTest_SocialNetwork;
 import zrdunittests.UnitTest_Timestamp;
 import zrdunittests.UnitTest_JsonFiles;
+import zrdunittests.UnitTest_MeanStdCalculation;
 import zrdunittests.UnitTest_TransactionSetData;
 
 /**
@@ -21,14 +22,15 @@ public class Main {
      */
     public static void main(String[] args) {
         runUnitTests();
-        ProcessJsonInformation.runProcess();
+        //ProcessJsonInformation.runProcess();
     }
     
     public static void runUnitTests(){
         //UnitTest_SocialNetwork.runTests();
         //UnitTest_Timestamp.runTests();
-        UnitTest_JsonFiles.runTests();
+        //UnitTest_JsonFiles.runTests();
         //UnitTest_TransactionSetData.runTests();
         //UnitTest_UserTransactionData.runTest();
+        UnitTest_MeanStdCalculation.runTests();
     }
 }
