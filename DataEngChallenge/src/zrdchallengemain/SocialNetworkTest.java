@@ -85,7 +85,7 @@ public class SocialNetworkTest {
          *      Storing the whole social network for each user
          *          is not scalable at all as my tests verified.
          */
-        System.out.println("------Test 4: Random Network------------");
+        System.out.println("------Test 5: Scalable Network------------");
         long startingTime = Calendar.getInstance().getTimeInMillis();
         AllUsersAndTransactions randNet = constructLargeRandomNetwork();
         long endingTime = Calendar.getInstance().getTimeInMillis();
@@ -94,6 +94,7 @@ public class SocialNetworkTest {
         
         double constructionTimeElapsed = (endingTime-startingTime)/1000.0;
         System.out.println("TO CHECK: Time to construct network: " + constructionTimeElapsed + " seconds");
+        displayLines();
         
     }
     

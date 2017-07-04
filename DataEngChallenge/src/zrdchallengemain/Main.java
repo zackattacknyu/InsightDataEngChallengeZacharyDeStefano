@@ -17,12 +17,11 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        //readJsonFile.exampleRun();
-        //SocialNetworkTest.runTests();
-        //TimestampTests.runTests();
-        //JsonFileTest.runTests();
-        //TransactionSetTest.runTests();
-        //UserTransactionTest.runTest();
+        SocialNetworkTest.runTests();
+        TimestampTests.runTests();
+        JsonFileTest.runTests();
+        TransactionSetTest.runTests();
+        UserTransactionTest.runTest();
         ProcessJsonInformation.runProcess();
     }
 }
