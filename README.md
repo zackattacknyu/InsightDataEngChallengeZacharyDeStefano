@@ -17,20 +17,23 @@ Here is a brief technical overview of the data structures I used. More detail is
 	      Its associated 100 KB stream log file took a max of 2 seconds to process
 	
 
-	Important functionality around transaction information was implemented with Java's TreeMap structure
-	I chose it due to time and space efficiency with search, insert, delete, and iterating
+	Important functionality around transaction information was implemented with Java's TreeSet structure
+		I chose it due to time efficiency with search, insert, and delete
+		It also iterates in ascending/desecding order
+	
+	Whenever I needed to store a set of users, I used the HashSet data structure
+		due to its time efficiency with regards to search
 
 	For each User I stored the following:
 	- Mean, Std of Transaction Amounts in Network
-	- Set of Pointers to their friends
-	- TreeMap of most recent T Transactions in Network
-	- TreeMap of their most recent T Transactions
+	- HashSet of Pointers to their friends
+	- TreeSet of most recent T Transactions in Network
 	
 	NOTE: I do NOT store each user's social network. That proved to be too prohibitive on memory space when 
-		you have millions of users. Instead I recalculate a user's social network on the fly when necessary. 
+		you have thousands of users. Instead I recalculate a user's social network on the fly when necessary. 
 	
 	For all the users, I stored the following:
-	- TreeMap of all recent Transactions
+	- TreeSet of all recent Transactions
 		- Size of this set was (N+1)*T with N being number of users, T being number of transactions
 		- That size is an upper bound on the amount necessary to build most recent transactions for each user
 	
