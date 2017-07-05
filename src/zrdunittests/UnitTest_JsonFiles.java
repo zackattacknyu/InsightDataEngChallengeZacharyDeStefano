@@ -5,8 +5,8 @@
 package zrdunittests;
 
 import java.util.Calendar;
-import zrdreadjsondata.JsonFile;
-import zrdreadjsondata.JsonLine;
+import zrdreadjsondata.JsonFileZrd;
+import zrdreadjsondata.JsonLineZrd;
 
 /**
  *
@@ -95,8 +95,8 @@ public class UnitTest_JsonFiles {
     }
     
     public static void displayDataFromJsonFile(String jsonFile,double probabilityDisplay){
-        JsonFile myfile = new JsonFile(jsonFile);
-        JsonLine myline;
+        JsonFileZrd myfile = new JsonFileZrd(jsonFile);
+        JsonLineZrd myline;
         while(myfile.hasMoreData()){
             myline = myfile.getNextLine();
             if(Math.random()<probabilityDisplay){

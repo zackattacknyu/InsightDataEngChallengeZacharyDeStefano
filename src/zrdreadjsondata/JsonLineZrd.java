@@ -11,11 +11,24 @@ import zrdnetworkdata.SocialNetworkHelper;
 import zrdnetworkdata.TimestampHelper;
 
 /**
+ * 
+ * This has all the functionality behind 
+ *  reading the data in the Json object and returning
+ *  variables for my program to understand
+ * 
+ * It uses GSON from Google to parse the JSON 
+ *  and return the data as appropriate
+ * 
+ * This is a custom class that is NOT part of GSON, hence
+ *      I put my initials at the end to make it obvious
  *
  * @author Zach
  */
-public class JsonLine {
+public class JsonLineZrd {
     
+    /*
+     * The fields that could appear in the JSON object
+     */
     public static final String D_FIELD_STRING = "D";
     public static final String T_FIELD_STRING = "T";
     public static final String EVENT_TYPE_FIELD_STRING = "event_type";
@@ -64,12 +77,12 @@ public class JsonLine {
     
     private JsonObject el;
     
-    public JsonLine(){
+    public JsonLineZrd(){
         validLine=false;
     }
 
     
-    public JsonLine(JsonParser jsonParser,String jsonLine){
+    public JsonLineZrd(JsonParser jsonParser,String jsonLine){
         try{
             JsonElement element = jsonParser.parse(jsonLine);
             el = element.getAsJsonObject();

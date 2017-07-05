@@ -10,8 +10,8 @@ import zrdnetworkdata.SocialNetworkHelper;
 import zrdnetworkdata.TransactionHelper;
 import zrdnetworkdata.User;
 import zrdreadjsondata.FlaggedPurchaseFile;
-import zrdreadjsondata.JsonFile;
-import zrdreadjsondata.JsonLine;
+import zrdreadjsondata.JsonFileZrd;
+import zrdreadjsondata.JsonLineZrd;
 
 /**
  * 
@@ -61,9 +61,9 @@ public class ProcessJsonInformation {
     public static AllUsersAndTransactions processLogFile(AllUsersAndTransactions allData,
             String jsonFile, boolean streamFlag, boolean testFlag){
         long startT = Calendar.getInstance().getTimeInMillis();
-        JsonFile myfile = new JsonFile(jsonFile);
+        JsonFileZrd myfile = new JsonFileZrd(jsonFile);
         int numberAnomalies = 0;
-        JsonLine myline;
+        JsonLineZrd myline;
         User userx;
         
         //creates the flagged purchases file
