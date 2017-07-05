@@ -49,20 +49,23 @@ public class Main {
             
             ProcessJsonInformation.BATCH_LOG_FILE="log_input_small/batch_log.json";
             ProcessJsonInformation.STREAM_LOG_FILE="log_input_small/stream_log.json";
-            FlaggedPurchaseFile.FLAGGED_PURCHASE_FILE="log_output/flagged_purchases_smallSampleDataSet.json";
+            FlaggedPurchaseFile.FLAGGED_PURCHASE_FILE=
+                    "log_output/flagged_purchases_smallSampleDataSet.json";
             
             runUnitTests();
             
             ProcessJsonInformation.BATCH_LOG_FILE="log_input_large/batch_log.json";
             ProcessJsonInformation.STREAM_LOG_FILE="log_input_large/stream_log.json";
-            FlaggedPurchaseFile.FLAGGED_PURCHASE_FILE="log_output/flagged_purchases_largeSampleDataSet.json";
+            FlaggedPurchaseFile.FLAGGED_PURCHASE_FILE=
+                    "log_output/flagged_purchases_largeSampleDataSet.json";
             
             runJsonUnitTest();
         }else{
             
             ProcessJsonInformation.BATCH_LOG_FILE="log_input/batch_log.json";
             ProcessJsonInformation.STREAM_LOG_FILE="log_input/stream_log.json";
-            FlaggedPurchaseFile.FLAGGED_PURCHASE_FILE= "log_output/flagged_purchases.json";
+            FlaggedPurchaseFile.FLAGGED_PURCHASE_FILE= 
+                    "log_output/flagged_purchases.json";
             
             ProcessJsonInformation.runProcess(false);
         }
