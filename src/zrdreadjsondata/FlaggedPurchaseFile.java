@@ -24,7 +24,6 @@ public class FlaggedPurchaseFile {
     private File outputFile;
     private FileWriter outputFileWrite;
     private JsonParser jsonParser = new JsonParser();
-    DecimalFormat df = new DecimalFormat("###.##");
 
     public static String FLAGGED_PURCHASE_FILE;
     
@@ -41,10 +40,32 @@ public class FlaggedPurchaseFile {
         }
     }
     
+    public static String truncateToTwoDecimals(double number){
+        String doubleStr = Double.toString(number);
+        StringBuilder newStr = new StringBuilder();
+        boolean decimalEncountered = false;
+        int numbersAfterDecimal = 0;
+        char currentChar;
+        for(int j=0; j < doubleStr.length(); j++){
+            currentChar = doubleStr.charAt(j);
+            newStr.append(currentChar);
+            if(decimalEncountered){
+                numbersAfterDecimal++;
+            }
+            if(currentChar=='.'){
+                decimalEncountered = true;
+            }
+            if(numbersAfterDecimal>=2){
+                break;
+            }
+        }
+        return newStr.toString();
+    }
+    
     public void addToFile(JsonObject object, User userdata){
         JsonObject newObject = jsonParser.parse(object.toString()).getAsJsonObject();
-        String meanStr = df.format(userdata.getMean());
-        String sdStr = df.format(userdata.getStd());
+        String meanStr = truncateToTwoDecimals(userdata.getMean());
+        String sdStr = truncateToTwoDecimals(userdata.getStd());
         newObject.addProperty("mean", meanStr);
         newObject.addProperty("sd",sdStr);
         
