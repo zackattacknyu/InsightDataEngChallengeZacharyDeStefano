@@ -12,3 +12,6 @@ The file run_myUnitTests.sh runs the informal unit tests I wrote as I developed
 **TO UPDATE** 
 When I run bash, I am having issues getting run_tests.sh to complete successfully
 	mainly because it refuses to run the jar file
+*************
+
+
