@@ -121,8 +121,9 @@ public class JsonLineZrd {
     }
     
     /**
-     * If parameters were specified, then the static variables
-     *      where those are stored are updated
+     * If parameters were specified, those strings are updated
+     * The program is responsible for actually setting the static variables
+     *      corresponding to the parameters
      */
     private void handleParameterObject(){
         eventNumber=1;
@@ -130,36 +131,56 @@ public class JsonLineZrd {
         Tvalue = Integer.parseInt(el.get(T_FIELD_STRING).getAsString());
     }
     
+    /**
+     * If an event has been specified, this differentiates
+     *      between a purchase event and a friend event
+     */
     private void handleEvents(){
         
         eventType = el.get(EVENT_TYPE_FIELD_STRING).getAsString();
+        
+        //all events have timestamps, so the long form is found now
         timestamp = el.get(TIMESTAMP_FIELD_STRING).getAsString();
-        timestampMillis = TimestampHelper.getMillisTime(timestamp);        
-        if(eventType.equals(PURCHASE_EVENT_NAME)){
+        timestampMillis = TimestampHelper.getMillisTime(timestamp);
+        
+        
+        if(eventType.equals(PURCHASE_EVENT_NAME)){ //purchase event
             handlePurchaseEvent();
         }else if(eventType.equals(UNFRIEND_EVENT_NAME) || 
-                eventType.equals(BEFRIEND_EVENT_NAME)){         
+                eventType.equals(BEFRIEND_EVENT_NAME)){  //friend or unfriend event
             handleFriendEvent();
         }else{
-            validLine=false;
+            validLine=false; //not a valid event was specified
         }
         
     }
     
+    /**
+     * handles friend/unfriend event
+     */
     private void handleFriendEvent(){
+        
+        //sets the event number variable appropriately
         if(eventType.equals(UNFRIEND_EVENT_NAME)){
             eventNumber=4;
         }else{
             eventNumber=3;
         }
+        
+        //gets the integer ids for both users involved with the friending/unfriending 
         friendId1 = el.get(FRIENDEVENT_ID1_FIELD_STRING).getAsString();
         friendId2 = el.get(FRIENDEVENT_ID2_FIELD_STRING).getAsString();
         user1 = Integer.parseInt(friendId1); 
         user2 = Integer.parseInt(friendId2);
     }
     
+    /*
+     * handles a purchase event
+     */
     private void handlePurchaseEvent(){
-        eventNumber=2;
+        eventNumber=2; //sets event number correctly
+        
+        //finds the user id and purchase amount 
         purchaseUserID = el.get(PURCHASEID_FIELD_STRING).getAsString();
         purchaseAmount = el.get(AMOUNT_FIELD_STRING).getAsString();
         userX = Integer.parseInt(purchaseUserID);
@@ -178,6 +199,9 @@ public class JsonLineZrd {
         }
     }
     
+    /*
+     * Displays the data found for the purposes of unit testing
+     */
     private void displayValidLineData(){
         String friendInfoStr = "The users " + user1 + " and " + user2;
         String timeInfoStr = " on " + timestamp + 
