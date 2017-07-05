@@ -6,9 +6,9 @@ package zrdnetworkdata;
 
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.TreeSet;
 
 /**
+ * This stores all the users and all the transactions
  *
  * @author Zach
  */
@@ -34,6 +34,11 @@ public class AllUsersAndTransactions {
         return allUsers.size();
     }
     
+    /**
+     * Adds a new user or returns an existing one
+     * @param newUserId     the id number for the user
+     * @return pointer to User object with that id number
+     */
     public User addUser(int newUserId){
         if(!allUsers.containsKey(newUserId)){
             User newUser = new User(newUserId);
@@ -55,38 +60,74 @@ public class AllUsersAndTransactions {
         return allUsersSet;
     }
 
+    /**
+     * Adds a friendship. Updates the set of pointers in both users sets
+     * Does NOT update the transaction maps for the users
+     * @param user1id user1 id number
+     * @param user2id user2 id number
+     */
     public void addFriendship(int user1id, int user2id){
         User user1=addUser(user1id); User user2= addUser(user2id);
         SocialNetworkHelper.beginFriendship(user1,user2);
     }
     
-    public void removeFriendship(int user1id,int user2id){
-        removeFriendship(user1id,user2id,false);
-    }
-    public void removeFriendship(int user1id, int user2id,boolean stream){
+    /**
+     * Removes a friendship. Updates the set of pointers in both users sets
+     * Does NOT update the transaction maps for the users
+     * @param user1id user1 id number
+     * @param user2id user2 id number
+     */
+    public void removeFriendship(int user1id, int user2id){
         User user1=addUser(user1id); User user2= addUser(user2id);
         SocialNetworkHelper.endFriendship(user1,user2);
     }
     
+    /**
+     * Recalculates the past transactions for all users in the network
+     */
     public void calculateTransForAllUsers(){
         for(User user: allUsersSet){
             user.recalculatePastTransactions(transactionSet);
         }
     }
     
+    /**
+     * Recalculates the mean, std for all users in network
+     */
     public void calculateMeanStdForAllUsers(){
         for(User user: allUsersSet){
             user.recalculateAll();
         }
     }
     
+    /**
+     * Adds a transaction to the set
+     * @param userX         user object behind transaction
+     * @param transTime     time when transaction was done
+     * @param amount        amount of transaction
+     */
     public void addToTransSet(User userX,long transTime,double amount){
         transactionSet.addToSet(userX, transTime, amount);
     }
     
+    /**
+     * Adds transaction to set and uses user Id
+     * @param userId        user id
+     * @param transTime     time of transaction
+     * @param amount        amount of transaction
+     */
     public void addJsonTranscation(int userId, long transTime, double amount){
         addJsonTranscation(userId,transTime,amount,false);
     }
+    
+    /**
+     * Adds transaction to set, does update if in streaming mode
+     * @param userId        user id integer
+     * @param transTime     time of transaction
+     * @param amount        amount of transaction
+     * @param stream        whether or not we are streaming
+     * @return user object
+     */
     public User addJsonTranscation(int userId, long transTime, double amount,boolean stream){
         User user0=addUser(userId);
         addToTransSet(user0,transTime,amount);
