@@ -19,7 +19,7 @@ import java.util.Scanner;
  *      by the JSON parser
  * 
  * It is a custom class and not part of GSON, hence
- *      I put my initials at the end
+ *      I put my initials at the end to make that obvious
  *
  * @author Zach
  */

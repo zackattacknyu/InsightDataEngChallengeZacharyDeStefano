@@ -41,6 +41,9 @@ public class JsonLineZrd {
     public static final String FRIENDEVENT_ID1_FIELD_STRING = "id1";
     public static final String FRIENDEVENT_ID2_FIELD_STRING = "id2";
     
+    /*
+     * The resulting variables that my program will understand
+     */
     int user1;
     int user2;
     int userX;
@@ -49,24 +52,26 @@ public class JsonLineZrd {
     int Tvalue;
     long timestampMillis;
     
+    /*
+     * The initial strings for those variables
+     */
     String eventType;
     String timestamp;
     String purchaseUserID;
     String purchaseAmount;
     String friendId1,friendId2;
     
-    /*Following standard is used:
+    /*In this program, the following numbers to denote the different types of events:
      *  0 - invalid statement
-     *  1 - parameter statemetn
+     *  1 - parameter statement
      *  2 - purchase
      *  3 - friend
      *  4 - unfriend
-     * 
      */
     int eventNumber=0;
     
-    /**
-     * Invalid if one of those following is true:
+    /**The data is 
+     * invalid if one of those following is true:
      *      - does not fit any of the event types
      *      - event type fits but not all data fields are properly specified
      * 
@@ -75,18 +80,33 @@ public class JsonLineZrd {
      */
     boolean validLine=true;
     
+    //original JsonObject behind this line
     private JsonObject el;
     
     public JsonLineZrd(){
         validLine=false;
     }
 
-    
+    /**
+     * Constructs the Json line. Parses through the JOSN string
+     *      and handles the result as appropriate
+     * @param jsonParser    json parser in GSON
+     * @param jsonLine      json data as string
+     */
     public JsonLineZrd(JsonParser jsonParser,String jsonLine){
         try{
+            //generates the JsonElement
             JsonElement element = jsonParser.parse(jsonLine);
-            el = element.getAsJsonObject();
             
+            //gets the corresponding object
+            el = element.getAsJsonObject(); 
+            
+            /*
+             * If the "D" appears then I assume parameters are being specified
+             *      and I handle that in one method
+             * Otherwise I assume another event is happening and that is handled
+             *      in a sepearate method
+             */
             if(el.has(D_FIELD_STRING)){
                 handleParameterObject();
             }else{
@@ -100,12 +120,14 @@ public class JsonLineZrd {
 
     }
     
+    /**
+     * If parameters were specified, then the static variables
+     *      where those are stored are updated
+     */
     private void handleParameterObject(){
         eventNumber=1;
         Dvalue = Integer.parseInt(el.get(D_FIELD_STRING).getAsString());
         Tvalue = Integer.parseInt(el.get(T_FIELD_STRING).getAsString());
-        SocialNetworkHelper.numDegreesSocialNetwork=Dvalue;
-        
     }
     
     private void handleEvents(){
