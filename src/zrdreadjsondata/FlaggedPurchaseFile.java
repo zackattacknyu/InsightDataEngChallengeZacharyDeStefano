@@ -27,6 +27,8 @@ public class FlaggedPurchaseFile {
     DecimalFormat df = new DecimalFormat("###.##");
 
     public static String FLAGGED_PURCHASE_FILE;
+    
+    private boolean firstLineWritten=false;
         
     public void init(){
         try {
@@ -46,8 +48,13 @@ public class FlaggedPurchaseFile {
         newObject.addProperty("mean", meanStr);
         newObject.addProperty("sd",sdStr);
         
-        String outputStr = newObject.toString() + "\n";
+        String outputStr = newObject.toString();
         try {
+            if(firstLineWritten){
+                outputFileWrite.write("\n");
+            }else{
+                firstLineWritten=true;
+            }
             outputFileWrite.write(outputStr);
         } catch (IOException ex) {
             System.out.println("IO EXCEPTION WHEN WRITING FLAGGED PURCHASES FILE: " + ex.getMessage());
