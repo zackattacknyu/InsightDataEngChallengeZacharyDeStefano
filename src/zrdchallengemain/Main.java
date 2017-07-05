@@ -8,8 +8,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import zrdreadjsondata.FlaggedPurchaseFile;
 import zrdunittests.UnitTest_JsonFiles;
 import zrdunittests.UnitTest_MeanStdCalculation;
@@ -19,6 +17,8 @@ import zrdunittests.UnitTest_TransactionSetData;
 import zrdunittests.UnitTest_UserTransactionData;
 
 /**
+ * This is the main class that runs the core functionality and
+ *  the informal unit tests
  *
  * @author Zach
  */
@@ -37,6 +37,9 @@ public class Main {
          */
         createLogOutputFolder();
         
+        /*
+         * If the batch, stream, and output file have been specified
+         */
         if(args.length==3){
             ProcessJsonInformation.BATCH_LOG_FILE=args[0];
             ProcessJsonInformation.STREAM_LOG_FILE=args[1];
@@ -45,6 +48,9 @@ public class Main {
             
         }
         
+        /*
+         *Does the unit tests only 
+         */
         if(args.length==1){
             
             ProcessJsonInformation.BATCH_LOG_FILE="log_input_small/batch_log.json";
@@ -62,6 +68,9 @@ public class Main {
             runJsonUnitTest();
         }else{
             
+            /*
+             * Runs the core functionality
+             */
             ProcessJsonInformation.BATCH_LOG_FILE="log_input/batch_log.json";
             ProcessJsonInformation.STREAM_LOG_FILE="log_input/stream_log.json";
             FlaggedPurchaseFile.FLAGGED_PURCHASE_FILE= 
@@ -75,6 +84,9 @@ public class Main {
         
     }
     
+    /**
+     * Creates the log output file in case it was not created before
+     */
     public static void createLogOutputFolder(){
         Path currentPath = Paths.get("").toAbsolutePath().resolve(LOG_OUTPUT_FOLDER_NAME);
         System.out.println(currentPath);
@@ -88,6 +100,10 @@ public class Main {
         }
     }
     
+    /**
+     * 
+     * Tells which set of tests is about to be done
+     */
     public static void printTestAnnouce(String announce){
         System.out.println();
         System.out.println("-----------------------------------------------");
@@ -96,6 +112,9 @@ public class Main {
         System.out.println();
     }
     
+    /**
+     * Runs all the unit tests
+     */
     public static void runUnitTests(){
         System.out.println("NOW DOING THE INFORMAL UNIT TESTS");
 
@@ -119,6 +138,11 @@ public class Main {
         
     }
     
+    /**
+     * This test the core functionality. It outputs the anomalous 
+     *      purchases found and the associated transaction history
+     *      as a verification step. 
+     */
     public static void runJsonUnitTest(){
         //runs the process json unit test
         printTestAnnouce("NOW THE JSON LOG DATA");

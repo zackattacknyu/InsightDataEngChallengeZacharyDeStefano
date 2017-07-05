@@ -13,6 +13,10 @@ The file run_myUnitTests.sh runs the informal unit tests I wrote as I developed
 	
 Here is a brief technical overview of the data structures I used. More detail is in the comments of the Java code:
 
+	NOTE: The 50 MB batch log file took a max of 5 seconds to process with my code
+	      Its associated 100 KB stream log file took a max of 2 seconds to process
+	
+
 	Important functionality around transaction information was implemented with Java's TreeMap structure
 	I chose it due to time and space efficiency with search, insert, delete, and iterating
 
