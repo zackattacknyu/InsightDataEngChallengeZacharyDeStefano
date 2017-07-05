@@ -11,6 +11,12 @@ import zrdnetworkdata.TransactionSet;
 import zrdnetworkdata.User;
 
 /**
+ * This tests the functionality of transactions sets to ensure the following:
+ *      -Transaction being added
+ *      -Transactions being returned in correct order
+ *      -Transactions being deleted if set is over certain size
+ * 
+ * Scalability test is done where millions of transactions are inserted
  *
  * @author Zach
  */

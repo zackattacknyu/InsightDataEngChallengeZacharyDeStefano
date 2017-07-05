@@ -14,6 +14,12 @@ import zrdnetworkdata.TransactionHelper;
 import zrdnetworkdata.User;
 
 /**
+ * 
+ * Tests Social Network and Transaction Set at once
+ * Skips right to scalability
+ * 
+ * Must verify that the most recent transactions are in order
+ *      and the user is not included in one of them
  *
  * @author Zach
  */

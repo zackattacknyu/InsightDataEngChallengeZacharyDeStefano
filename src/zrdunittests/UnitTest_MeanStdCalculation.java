@@ -8,15 +8,15 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import zrdnetworkdata.TransactionHelper;
 
-/**
+/**This will test the mean, std calculation
+ *      functions to ensure they were programmed correctly
+ * 
+ * Also tests the anamoly detection
  *
  * @author Zach
  */
 public class UnitTest_MeanStdCalculation {
     
-    /**
-     * This will test the mean, std calculation
-     */
     public static void runTests(){
         
         /*

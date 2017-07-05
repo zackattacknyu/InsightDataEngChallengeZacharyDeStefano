@@ -9,6 +9,9 @@ import zrdreadjsondata.JsonFileZrd;
 import zrdreadjsondata.JsonLineZrd;
 
 /**
+ * This does tests of JSON files
+ *      to ensure we are reading them correctly
+ *      and accamodating edge cases
  *
  * @author Zach
  */

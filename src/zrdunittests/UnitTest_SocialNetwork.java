@@ -6,11 +6,14 @@ package zrdunittests;
 
 import java.util.Calendar;
 import java.util.HashSet;
-import zrdnetworkdata.SocialNetworkHelper;
-import zrdnetworkdata.User;
-import zrdnetworkdata.AllUsersAndTransactions;
+import zrdnetworkdata.*;
 
 /**
+ * 
+ * Tests the social network functionality
+ *      to ensure the searches are working properly
+ * 
+ * Also tests scalability to millions of users
  *
  * @author Zach
  */
