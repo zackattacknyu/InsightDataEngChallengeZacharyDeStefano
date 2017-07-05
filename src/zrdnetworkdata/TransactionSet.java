@@ -10,8 +10,7 @@ import java.util.TreeSet;
 
 /**
  * This implements a set of transactions as per our rules. 
- * It is used for 3 things:
- *      - Transactions for a single user
+ * It is used for 2 things:
  *      - Transactions in a user's social network
  *      - Global set of transactions across all users
  * 

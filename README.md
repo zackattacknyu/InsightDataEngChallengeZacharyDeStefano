@@ -48,7 +48,7 @@ Here is a brief technical overview of the data structures I used. More detail is
 		- Recalculate the mean, std if we are streaming
 	
 	When a purchase happens, I do the following:
-	- add it to users Transaction Map and the global Transaction Map, following (B)
+	- add it to the global Transaction Map, following (B)
 	- calculate the user's social network and for each user there, add the transaction to their network map, following (B)
 	
 	When a befriend/unfriend happens, I do the following:
